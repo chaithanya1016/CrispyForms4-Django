@@ -1,0 +1,59 @@
+{% extends "base_content/base.html" %}
+
+<!-- Crispy form-->
+{% load crispy_forms_tags %}
+<!-- Block Content -->
+{% block content %}
+
+<div class="container shadow-lg p-3 my-3 bg-body rounded">
+  <h3 class="text-center">Sign Up Page</h3>
+
+  <div
+    class="card p-3 my-3 text-center border-secondary"
+    style="font-size: 18px"
+  >
+    Fontend: FR-22 | Backend: BA-10 | Fullstack: FU-15
+  </div>
+
+  <div class="message">
+    {% if messages %} {% for message in messages %}
+    <p
+      {%
+      if
+      message.tags
+      %}
+      class="{{message.tags}} alert alert-success m-2"
+      {%
+      endif
+      %}
+    >
+      {{message}}
+    </p>
+    {% endfor %} {% endif %}
+  </div>
+
+  <form action="" method="post" novalidate>
+    {% csrf_token %}
+    <div class="row">
+      <div class="col-4">{{ form.first_name |as_crispy_field}}</div>
+      <div class="col-4">{{ form.last_name |as_crispy_field}}</div>
+      <div class="col-4">{{ form.job |as_crispy_field}}</div>
+    </div>
+    <div class="row">
+      <div class="col-4">{{ form.age |as_crispy_field}}</div>
+      <div class="col-4">{{ form.email |as_crispy_field}}</div>
+      <div class="col-4">{{ form.phone |as_crispy_field}}</div>
+    </div>
+
+    <!--Passwords-->
+    {{ form.message |as_crispy_field}}
+
+    <input class="btn btn-sm btn-success m-2" type="submit" value="Sign Up" />
+    <a href="{% url 'home' %}" class="btn btn-sm btn-primary m-2">
+      Back to Home
+    </a>
+  </form>
+</div>
+
+<!-- End Block Content -->
+{% endblock content %}

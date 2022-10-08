@@ -1,0 +1,18 @@
+{% extends "base_content/base.html" %} {% load crispy_forms_tags %}
+<!-- ++ == Block Content == ++-->
+{% block content %}
+
+<div class="home container">
+  <h1 class="h1 text-center">Home Page</h1>
+  <div class="message">
+    {% if messages %} {% for message in messages %}
+    <p {% if message.tags %} class="alert alert-success m-2" {% endif %}>
+      {{message}}
+    </p>
+    {% endfor %} {% endif %}
+  </div>
+
+  <br />
+  <a class="btn btn-sm btn-success" href="{% url 'signup' %}">SignUp</a>
+</div>
+{% endblock content %}
